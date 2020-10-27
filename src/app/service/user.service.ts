@@ -28,5 +28,11 @@ export class UserService {
   }
 
 
+  getUsers(){
+
+    return this.asf.collection('User').snapshotChanges();
+  }
+
+
 
 }

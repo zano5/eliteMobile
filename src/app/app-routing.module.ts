@@ -63,6 +63,14 @@ const routes: Routes = [
     path: 'bid-filter',
     loadChildren: () => import('./page/bid-filter/bid-filter.module').then( m => m.BidFilterPageModule)
   },
+  {
+    path: 'admin-sign-in',
+    loadChildren: () => import('./admin/admin-sign-in/admin-sign-in.module').then( m => m.AdminSignInPageModule)
+  },
+  {
+    path: 'admin-users',
+    loadChildren: () => import('./admin/admin-users/admin-users.module').then( m => m.AdminUsersPageModule)
+  },
 ]
 
 @NgModule({

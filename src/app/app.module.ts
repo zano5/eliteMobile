@@ -13,6 +13,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { SidemuPage } from './page/menu/sidemu/sidemu.page';
+// import { ChartsModule } from 'ng2-charts';
 
 
 
@@ -34,7 +35,8 @@ var firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     AngularFireStorageModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    // ChartsModule
   ],
   providers: [
     StatusBar,

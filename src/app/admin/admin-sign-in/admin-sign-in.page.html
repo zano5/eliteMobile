@@ -1,0 +1,23 @@
+<ion-content>
+  <div id="login">
+    <div id="card">
+      <h1 class="mat-display-1" style="margin-bottom: 10px;">Login</h1>
+      <p class="mat-body-1 subtitle">Welcome to the Admin Panel</p>
+  
+      <form [formGroup]="form">
+        <div>
+          <span class="mat-body-1 headings">Email</span>
+          <input type="email" formControlName="email" [ngClass]="{'error': !valid('email')}" />
+        </div>
+  
+        <div>
+          <span class="mat-body-1 headings">Password</span>
+          <input type="password" formControlName="password" [ngClass]="{'error': !valid('password')}" />
+        </div>
+  
+        <ion-button expand="block" (click)="submit()" color="dark">Login</ion-button>
+        <p class="failed mat-body-1">{{error}}</p>
+      </form>
+    </div>
+  </div>
+</ion-content>
