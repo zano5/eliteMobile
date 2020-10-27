@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    
+    <ion-buttons slot="start">
+      <ion-back-button>
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>Sign Up</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+<div>
+  <div id="login">
+    <div id="card">
+      <h1 class="mat-display-1" style="margin-bottom: 10px;">Registration</h1>
+      <p class="mat-body-1 subtitle">Enter Your Registration Details!</p>
+  
+      <form [formGroup]="form">
+        <div>
+          <span class="mat-body-1 headings">Email</span>
+          <input type="email" formControlName="email" [ngClass]="{'error': !valid('email')}" />
+        </div>
+  
+        <div>
+          <span class="mat-body-1 headings">Password</span>
+          <input type="password" formControlName="password" [ngClass]="{'error': !valid('password')}" />
+        </div>
+
+        
+        <div>
+          <span class="mat-body-1 headings"> Confirm Password</span>
+          <input type="password" formControlName="confirmPassword" [ngClass]="{'error': !valid('password')}" />
+        </div>
+  
+        <ion-button expand="full" (click)="submit()" color="dark">Submit</ion-button>
+        <p class="failed mat-body-1">{{error}}</p>
+      </form>
+    </div>
+  </div>
+
+  </div>
+
+</ion-content>

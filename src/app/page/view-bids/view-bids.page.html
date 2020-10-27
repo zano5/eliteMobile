@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color='primary'>
+    <ion-buttons slot="start">
+      <ion-menu-button>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title>Bids</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<ion-row >
+  <ion-col  class="ion-padding" size-xs="12"  size-md="12" size-lg="3"  size-xl='3' *ngFor="let bid of bidList">
+    <ion-card  class="ion-padding">
+
+      <ion-card-title>
+      Amount:  R{{bid.amount}}
+      </ion-card-title>
+
+
+      <ion-button color="dark">Accepted</ion-button>
+
+    </ion-card>
+  </ion-col>
+</ion-row>
+
+</ion-content>

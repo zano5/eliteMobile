@@ -1,0 +1,26 @@
+<div class="logo">
+  <img src="../../../assets/images/logo.png" style="max-width: 40%; min-width: 30%; max-height: 40%;">
+  <h1>EliteShares</h1>
+</div>
+<div class="loginform">
+  <h1 class="admin">Welcome!</h1>
+  <form [formGroup]="form">
+
+      <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input matInput type="email" formControlName="email" [ngClass]="{'error': !valid('email')}" ></ion-input>
+          </ion-item>
+
+      
+
+    <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input matInput type="password" formControlName="password" [ngClass]="{'error': !valid('password')}" ></ion-input>
+        </ion-item>
+      <button (click)="submit()">Login</button>
+      <p class="failed mat-body-1">{{error}}</p>
+  </form>
+
+
+  <p  id='signUp' (click)="signUp()">Create user account!</p>
+</div>
