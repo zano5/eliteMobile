@@ -1,5 +1,7 @@
 {
   "name": "eliteMobile",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

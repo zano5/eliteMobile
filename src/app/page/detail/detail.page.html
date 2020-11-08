@@ -5,64 +5,103 @@
       <ion-menu-button>
       </ion-menu-button>
     </ion-buttons>
-    <ion-title>Home</ion-title>
+    <ion-title>Shares</ion-title>
+
+    <ion-buttons slot="end">
+      
+      <ion-button (click)="goProfile()"><ion-icon name="person"></ion-icon></ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <ion-grid>
+  <h4 style="text-align: center;">Select Your Required Share Range</h4>
+
+  <ion-segment color="primary" [(ngModel)]='range'  (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="5000"  >
+      <ion-label>R500-R3000</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="10000">
+      <ion-label>R3000-R6000</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="15000">
+      <ion-label>R6000-R10000</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div *ngIf='range=="5000"'>
+
+
+
     <ion-row>
-      <ion-col  size-xs="12"  size-md="12" size-lg="3"  size-xl='3'>
-        <ion-card class="ion-padding">
-
+      <ion-col  class="ion-padding" size-xs="12"  size-md="12" size-lg="3"  size-xl='3' *ngFor="let bid of bidList">
+        <ion-card  class="ion-padding" >
+    
           <ion-card-title>
-            What is your BID Range amount?
+
+            <b>{{bid.bankName}}</b>
+          
           </ion-card-title>
+    
 
-          <ion-card-content class="ion-padding">
+          <ion-card-content>
 
-            R1000 - R5000
+            Amount:  R{{bid.amount}}
           </ion-card-content>
-
-          <ion-button color="dark" (click)="goAmount1()">Bid</ion-button>
-
-        </ion-card>
-      </ion-col>
-      <ion-col  size-xs="12" size-md="12"  size-lg="3"  size-xl='3'>
-        <ion-card class="ion-padding">
-
-          <ion-card-title>
-            What is your BID Range amount?
-          </ion-card-title>
-
-          <ion-card-content class="ion-padding">
-
-            R5000 - R10000
-          </ion-card-content>
-          <ion-button color="dark" (click)="goAmount2()">Bid</ion-button>
-
-        </ion-card>
-      </ion-col>
-      <ion-col size-xs="12"  size-md="12"  size-lg="3"  size-xl='3'>
-        <ion-card  class="ion-padding">
-
-          <ion-card-title>
-            What is your BID Range amount?
-          </ion-card-title>
-
-     
-          <ion-card-content class="ion-padding">
-
-            R10000 - R15000
-          </ion-card-content >
-
-          <ion-button color="dark" (click)="goAmount3()">Bid</ion-button>
-
-
+    
+          <ion-button color="dark"  (click)='presentModal(bid)'>Buy Share</ion-button>
+    
         </ion-card>
       </ion-col>
     </ion-row>
-  </ion-grid>
+
+  </div>
+
+
+
+  <div *ngIf='range=="10000"'>
+
+
+
+    <ion-row>
+      <ion-col  class="ion-padding" size-xs="12"  size-md="12" size-lg="3"  size-xl='3' *ngFor="let bid of bidList">
+        <ion-card  class="ion-padding">
+    
+          <ion-card-title>
+          Amount:  R{{bid.amount}}
+          </ion-card-title>
+    
+    
+          <ion-button color="dark" (click)='presentModal(bid)'>Buy Share</ion-button>
+    
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    
+  </div>
+
+
+  <div *ngIf='range=="15000"'>
+
+
+
+    <ion-row>
+      <ion-col  class="ion-padding" size-xs="12"  size-md="12" size-lg="3"  size-xl='3' *ngFor="let bid of bidList">
+        <ion-card  class="ion-padding">
+    
+          <ion-card-title>
+          Amount:  R{{bid.amount}}
+          </ion-card-title>
+    
+    
+          <ion-button color="dark" (click)='presentModal(bid)'>Buy Share</ion-button>
+    
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    
+  </div>
+
 
 </ion-content>

@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+    <ion-menu-button>
+    </ion-menu-button>
+  </ion-buttons>
+    <ion-title>Sold Shares</ion-title>
+    <ion-buttons slot="end">
+      
+      <ion-button (click)="goProfile()"><ion-icon name="person"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-searchbar [(ngModel)]="reference" (ionChange)="search($event)"></ion-searchbar>
+
+<ion-card  class="ion-padding">
+  <ion-row>
+
+    <ion-col>
+
+      <b>Buyer Reference</b>
+
+    </ion-col>
+
+
+    <ion-col>
+
+      <b>Amount</b>
+
+
+    </ion-col>
+
+
+    
+
+  </ion-row>
+
+</ion-card>
+
+
+
+
+
+<ion-card class="ion-padding">
+
+<ion-row *ngFor="let sold of soldShareList">
+  <ion-col>
+
+    {{sold.reference}}
+  </ion-col>
+
+  <ion-col>
+
+    {{sold.acceptedAmount}}
+  </ion-col>
+
+</ion-row>
+</ion-card>
+
+
+
+  
+
+
+
+</ion-content>

@@ -1,0 +1,220 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title>Bought Shares</ion-title>
+
+    <ion-buttons slot="end">
+      
+      <ion-button (click)="goProfile()"><ion-icon name="person"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+
+  <ion-card class="ion-padding">
+
+
+<ion-row>
+
+  <ion-col>
+
+   <b>Shares</b>
+
+  </ion-col>
+
+
+  <ion-col>
+
+    <b>Future Price</b>
+
+  </ion-col>
+
+
+  <ion-col>
+
+      <b>Percentage</b>
+  </ion-col>
+
+
+  <ion-col>
+
+   <b>Bought Day</b>
+</ion-col>
+
+<ion-col>
+
+  <b>Sell Day</b>
+</ion-col>
+</ion-row>
+
+
+  </ion-card>
+<!-- 
+<ion-card  class="ion-padding">
+  <ion-row *ngFor="let bought of boughtSharesList"> 
+
+
+    <ion-col>
+
+      {{bought.acceptedAmount}}
+
+
+      {{setTotalBoughtAmount(bought.acceptedAmount)}}
+
+
+    </ion-col>
+
+
+    <ion-col>
+
+     {{bought.acceptedAmount   * bought.percentage + bought.acceptedAmount}} 
+
+    </ion-col>
+
+
+    <ion-col>
+
+      {{bought.percentage * 100}} %
+
+    </ion-col>
+
+
+    <ion-col>
+
+
+        {{bought.createdDate.toDate()  | amParse:'DD/MM/YYYY' | amDateFormat:'LL'}}
+     
+    </ion-col>
+
+
+    <ion-col>
+
+
+      {{getDate(bought.createdDate.toDate(), bought.acceptedDuration)   | amParse:'DD/MM/YYYY' | amDateFormat:'LL'}}
+    </ion-col>
+
+
+  </ion-row>
+
+</ion-card>
+
+<ion-card class="ion-padding">
+
+  <ion-row>
+
+    <ion-col><b>Total Shares Bought</b></ion-col>
+
+ 
+  <ion-col> {{totalIncentiveAmount}} </ion-col>
+
+
+
+
+  </ion-row>
+
+  
+  <ion-row>
+
+    <ion-col><b>Total Shares Bought</b></ion-col>
+
+ 
+  <ion-col> {{totalIncentiveAmount}} </ion-col>
+
+
+
+
+  </ion-row>
+
+
+ 
+
+</ion-card> -->
+
+
+
+
+
+
+<ion-card  class="ion-padding">
+  <ion-row *ngFor="let bought of boughtSharesList"> 
+
+
+    <ion-col>
+
+      {{bought.shares}}
+
+    </ion-col>
+
+
+    <ion-col>
+
+      {{bought.futureShares}}
+
+    </ion-col>
+
+
+    <ion-col>
+
+      {{bought.percentage * 100}} %
+
+    </ion-col>
+
+
+    <ion-col>
+
+
+        {{bought.boughtDate.toDate()  | amParse:'DD/MM/YYYY' | amDateFormat:'LL'}}
+     
+    </ion-col>
+
+
+    <ion-col>
+
+
+      {{ bought.soldDate.toDate() | amParse:'DD/MM/YYYY' | amDateFormat:'LL'}}
+    </ion-col>
+
+
+  </ion-row>
+
+</ion-card>
+
+<ion-card class="ion-padding">
+
+  <ion-row>
+
+    <ion-col><b>Total Shares Bought</b></ion-col>
+
+ 
+  <ion-col> {{totalSharesBought}} </ion-col>
+
+
+
+
+  </ion-row>
+
+  
+  <ion-row>
+
+    <ion-col><b>Share Incentive Amount</b></ion-col>
+
+ 
+  <ion-col> {{totalIncentiveAmount}} </ion-col>
+
+
+
+
+  </ion-row>
+
+
+ 
+
+</ion-card> 
+
+</ion-content>

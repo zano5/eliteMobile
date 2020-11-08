@@ -19,27 +19,111 @@
       <p class="mat-body-1 subtitle">Enter Your Registration Details!</p>
   
       <form [formGroup]="form">
-        <div>
-          <span class="mat-body-1 headings">Email</span>
-          <input type="email" formControlName="email" [ngClass]="{'error': !valid('email')}" />
-        </div>
-  
-        <div>
-          <span class="mat-body-1 headings">Password</span>
-          <input type="password" formControlName="password" [ngClass]="{'error': !valid('password')}" />
-        </div>
+        <ion-row>
+
+          <ion-col>
+           
+            <div>
+              <span class="mat-body-1 headings" >Username</span>
+              <input type="email" formControlName="username"  style=' text-transform: capitalize;'/>
+            </div>
+
+          </ion-col>
+
+          <ion-col>
+
+            <div>
+              <span class="mat-body-1 headings">Email</span>
+              <input type="email" formControlName="email" [ngClass]="{'error': !valid('email')}" />
+            </div>
+            
+          </ion-col>
+
+        </ion-row>
+      
+
+       
+        <ion-row>
+
+          <ion-col>
+           
+            <div>
+              <span class="mat-body-1 headings" >Password</span>
+              <input type="email" formControlName="password"  style=' text-transform: capitalize;'/>
+            </div>
+
+          </ion-col>
+
+          <ion-col>
+
+            <div>
+              <span class="mat-body-1 headings">Confirm Passwprd</span>
+              <input type="email" formControlName="confirmPassword" [ngClass]="{'error': !valid('email')}" />
+            </div>
+            
+          </ion-col>
+
+        </ion-row>
+       
+          <ion-row>
+
+            <ion-col>
+
+              <div>
+                <span class="mat-body-1 headings">Bank Name</span>
+                <input type="text" formControlName="bankName" [ngClass]="{'error': !valid('bankName')}" />
+              </div>
+           
+
+
+            </ion-col>
+
+
+
+            <ion-col>
+
+
+              <div>
+                <span class="mat-body-1 headings">Account Number</span>
+                <input type="number" formControlName="bankAccount" [ngClass]="{'error': !valid('bankAccount')}" />
+              </div>
+
+            </ion-col>
+          </ion-row>
+
+           
+
+
+
+          
+
+      
+      
+
+
+       
+
+      
 
         
-        <div>
-          <span class="mat-body-1 headings"> Confirm Password</span>
-          <input type="password" formControlName="confirmPassword" [ngClass]="{'error': !valid('password')}" />
-        </div>
+
+     
   
+       
+    
+        <div>
+          <span class="mat-body-1 headings">Referred By</span>
+          <input type="text" [value]="refferBy"  disabled/>
+        </div>
+    
+    
+   
         <ion-button expand="full" (click)="submit()" color="dark">Submit</ion-button>
-        <p class="failed mat-body-1">{{error}}</p>
+      
       </form>
     </div>
   </div>
+
 
   </div>
 

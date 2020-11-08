@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+
+      <ion-back-button>
+      </ion-back-button>
+
+    </ion-buttons>
+    <ion-title>View Bids</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-row >
+
+  <ion-col size-xs="12" size-md="12" size-lg="6"  size-xl='6' *ngFor="let bid of bidList" class='ion-padding' >
+  <ion-card   >
+
+    <ion-card-title>
+<ion-item lines="none">
+     <ion-text> {{bid.username}}</ion-text>
+
+    </ion-item>
+
+ 
+    </ion-card-title>
+
+<ion-card-content>
+
+  <ion-item lines="none">
+    <ion-text>
+
+   
+
+      {{bid.bankName}}
+    </ion-text>
+
+   </ion-item>
+
+   <ion-item lines="none">
+<ion-text>
+    <ion-button fill="clear" (click)="deleteBid(bid)"><ion-icon name="trash"></ion-icon></ion-button>
+   </ion-text>
+
+ </ion-item>
+
+
+</ion-card-content>
+
+  </ion-card>
+
+</ion-col>
+</ion-row>
+
+
+</ion-content>

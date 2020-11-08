@@ -21,10 +21,19 @@ export class SidemuPage implements OnInit {
 
 
 
-      { title: 'sidemu/detail',icon: 'home', page: 'Home' },
-      { title: 'sidemu/view-bids',icon: 'card', page: 'Bids' },
-      { title: 'sidemu/profile',icon: 'person', page: 'Profile' },
-      { title: 'Terms & Conditions',icon: 'book', page: 'Terms & Conditons'}
+      { title: 'sidemu/dashboard',icon: 'home', page: 'Dashboard' },
+      { title: 'sidemu/detail',icon: 'card', page: 'Shares For Sales' },
+      { title: 'sidemu/bought-shares',icon: 'cash', page: 'Bought Shares' },
+      { title: 'sidemu/sold-shares',icon: 'cash', page: 'Sold Shares' },
+      { title: 'sidemu/pending-shares',icon: 'cash', page: 'Pending Shares'},
+      { title: 'sidemu/notifications',icon: 'card', page: 'Notifications'},
+      { title: 'sidemu/table',icon: 'book', page: 'Table' },
+      { title: 'sidemu/referrals',icon: 'person', page: 'Referrals' },
+      { title: 'sidemu/terms',icon: 'book', page: 'Terms & Conditons'},
+    
+
+    
+     
   
   
     ];
@@ -49,6 +58,7 @@ this.router.navigateByUrl(page.title);
 
     this.loginDao.signOut().then(() => {
 
+      this.router.navigateByUrl('');
       this.router.navigateByUrl('');
     })
 

@@ -1,0 +1,43 @@
+<div  class="ion-padding">
+  <h3 >Sign In with Your Phone Number</h3>
+
+  <label for="phone">Phone Number</label><br>
+  <ion-row>
+
+      <ion-col>
+  
+  <ion-input type="text" [(ngModel)]="phoneNumber.country"  class="input" placeholder="27"    maxlength="2"></ion-input>
+
+</ion-col>
+
+<ion-col>
+  <ion-input type="text" [(ngModel)]="phoneNumber.area"     class="input" placeholder="949"  maxlength="3"></ion-input>
+</ion-col>
+
+<ion-col>
+  <ion-input type="text" [(ngModel)]="phoneNumber.prefix"   class="input" placeholder="555"  maxlength="3"></ion-input>
+</ion-col>
+<ion-col>
+  <ion-input type="text" [(ngModel)]="phoneNumber.line"     class="input" placeholder="5555" maxlength="4"></ion-input>
+</ion-col>
+</ion-row>
+  <div id="recaptcha-container"></div>
+
+  <ion-button (click)="sendLoginCode()">SMS Text Login Code</ion-button>
+
+  <div *ngIf="windowRef.confirmationResult">
+    <hr>
+    <label for="code">Enter your Verification Code Here</label><br>
+    <ion-input type="text" name="code" [(ngModel)]="verificationCode"></ion-input>
+
+    <ion-button (click)="verifyLoginCode()">Verify</ion-button>
+  </div>
+
+</div>
+
+<!-- <div *ngIf="user">
+  You have successfully logged in with your phone number!
+
+  UserId: {{ user?.uid }}
+
+</div> -->

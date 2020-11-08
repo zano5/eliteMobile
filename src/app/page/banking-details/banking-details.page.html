@@ -1,13 +1,23 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-menu-button>
-      </ion-menu-button>
+      <ion-back-button>
+      </ion-back-button>
     </ion-buttons>
     <ion-title>Banking Details</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+   <p>Reference: {{acceptedBid.reference}}  </p>
+  <p>Bank: {{client?.bankName}}</p>
+  
+  <p>Bank Account: {{client?.bankAccount}}</p>
+  <p>Amount: {{acceptedBid.acceptedAmount}}</p> 
+   
+
+
+  <ion-button (click)="confirm()">Confirmed</ion-button>
 
 </ion-content>

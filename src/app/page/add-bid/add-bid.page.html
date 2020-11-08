@@ -1,7 +1,21 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Add Bid</ion-title>
+  <ion-toolbar >
+    <ion-title>Purchase Share</ion-title>
+
+    <ion-buttons slot="end">
+
+
+      <ion-button fill='clear' (click)="close()">
+    
+        <ion-icon name='close'></ion-icon>
+      </ion-button>
+    
+    
+     </ion-buttons>
   </ion-toolbar>
+
+
+ 
 </ion-header>
 
 <ion-content>
@@ -10,6 +24,31 @@
   <ion-item>
 
     <ion-label>Amount</ion-label>
+    <ion-input type='number' [(ngModel)]="acceptBid.acceptedAmount"></ion-input>
   </ion-item>
+
+
+  <ion-item>
+    <ion-label>Duration</ion-label>
+    <ion-select  [(ngModel)]="acceptBid.acceptedDuration">
+      <ion-select-option value="3">3 Days</ion-select-option>
+      <ion-select-option value="8">8 Days</ion-select-option>
+      <ion-select-option value="12">12 Days</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+
+
+ <ion-row>
+
+  <ion-col>
+    <ion-button expand="block" (click)="makeBid()">Buy</ion-button>
+  </ion-col>
+
+  <ion-col>
+    <ion-button expand="block"  (click)="buyAll()">Buy All</ion-button>
+  </ion-col>
+ </ion-row>
+ 
 
 </ion-content>

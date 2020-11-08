@@ -15,7 +15,7 @@ import { AdminUsersPage } from './admin-users.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    // ChartsModule,
+     //ChartsModule,
     AdminUsersPageRoutingModule
   ],
   declarations: [AdminUsersPage]

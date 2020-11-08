@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BidService } from 'src/app/service/bid.service';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-bid-filter',
@@ -11,10 +12,15 @@ export class BidFilterPage implements OnInit {
 
   bidList = [];
   amount;
+  userID;
 
-  constructor(private bidDao: BidService, private route: ActivatedRoute) { }
+  constructor(private bidDao: BidService, private route: ActivatedRoute) {
+    this.userID = firebase.auth().currentUser.uid;
+   }
 
   ngOnInit() {
+
+    this.userID = firebase.auth().currentUser.uid;
 
     this.route.queryParams.subscribe(params => {
 
@@ -35,7 +41,7 @@ export class BidFilterPage implements OnInit {
 
     if(amount == 5000){
 
-      this.bidDao.getBidsByFilter5000(amount).subscribe(data => {
+      this.bidDao.getBidsByFilter5000(amount, this.userID).subscribe(data => {
 
 
         this.bidList =   data.map(e => {
@@ -54,7 +60,7 @@ export class BidFilterPage implements OnInit {
 
     }else if(amount == 10000){
 
-      this.bidDao.getBidsByFilter10000(amount).subscribe(data => {
+      this.bidDao.getBidsByFilter10000(amount, this.userID).subscribe(data => {
 
 
         this.bidList =   data.map(e => {
@@ -73,7 +79,7 @@ export class BidFilterPage implements OnInit {
 
     }else if(amount == 15000){
 
-      this.bidDao.getBidsByFilter15000(amount).subscribe(data => {
+      this.bidDao.getBidsByFilter15000(amount, this.userID).subscribe(data => {
 
 
         this.bidList =   data.map(e => {

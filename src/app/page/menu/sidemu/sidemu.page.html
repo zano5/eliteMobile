@@ -14,9 +14,11 @@
   <ion-content>
     <ion-list no-lines>
       <ion-item menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" lines="none">
-          <ion-icon [name] = "p.icon" item-left  ></ion-icon>
+      <ion-button fill="clear" expand="full">    <ion-icon [name] = "p.icon" item-left  ></ion-icon>
     {{p.page}}
+  </ion-button>
       </ion-item>
+
       <ion-item (click)='signOut()'>
         <ion-icon name="log-out"></ion-icon> Sign Out
       </ion-item>

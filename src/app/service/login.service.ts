@@ -25,5 +25,10 @@ export class LoginService {
    return this.auth.signOut();
   }
 
+
+  async SendVerificationMail() {
+   return (await this.auth.currentUser).sendEmailVerification();
+}
+
   
   }

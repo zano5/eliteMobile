@@ -9,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'login-user',
     pathMatch: 'full'
   },
   {
@@ -26,24 +26,62 @@ const routes: Routes = [
         path: 'detail',
         loadChildren: () => import('./page/detail/detail.module').then( m => m.DetailPageModule)
       },
+
       {
-        path: 'profile',
-        loadChildren: () => import('./page/profile/profile.module').then( m => m.ProfilePageModule)
-      },
-      {
-        path: 'banking-details',
-        loadChildren: () => import('./page/banking-details/banking-details.module').then( m => m.BankingDetailsPageModule)
+        path: 'dashboard',
+        loadChildren: () => import('./page/dashboard/dashboard.module').then( m => m.DashboardPageModule)
       },
 
       {
         path: 'view-bids',
         loadChildren: () => import('./page/view-bids/view-bids.module').then( m => m.ViewBidsPageModule)
       },
+      {
+        path: 'dashboard',
+        loadChildren: () => import('./page/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+      },
+       {
+    path: 'table',
+    loadChildren: () => import('./page/table/table.module').then( m => m.TablePageModule)
+  },
+  {
+    path: 'sold-shares',
+    loadChildren: () => import('./page/sold-shares/sold-shares.module').then( m => m.SoldSharesPageModule)
+  },
+
+  {
+    path: 'notifications',
+    loadChildren: () => import('./page/notifications/notifications.module').then( m => m.NotificationsPageModule)
+  },
+
+  {
+    path: 'terms',
+    loadChildren: () => import('./page/terms/terms.module').then( m => m.TermsPageModule)
+  },
+
+  {
+    path: 'referrals',
+    loadChildren: () => import('./page/referrals/referrals.module').then( m => m.ReferralsPageModule)
+  },
+  
+  {
+    path: 'bought-shares',
+    loadChildren: () => import('./page/bought-shares/bought-shares.module').then( m => m.BoughtSharesPageModule)
+  },
+
+  {
+    path: 'incentive-wallet',
+    loadChildren: () => import('./page/incentive-wallet/incentive-wallet.module').then( m => m.IncentiveWalletPageModule)
+  },
+  {
+    path: 'pending-shares',
+    loadChildren: () => import('./page/pending-shares/pending-shares.module').then( m => m.PendingSharesPageModule)
+  },
 
     ]
   },
   {
-    path: 'sign-up',
+    path: 'sign-up/:id',
     loadChildren: () => import('./page/sign-up/sign-up.module').then( m => m.SignUpPageModule)
   },
  
@@ -71,6 +109,93 @@ const routes: Routes = [
     path: 'admin-users',
     loadChildren: () => import('./admin/admin-users/admin-users.module').then( m => m.AdminUsersPageModule)
   },
+  {
+    path: 'landing',
+    loadChildren: () => import('./page/landing/landing.module').then( m => m.LandingPageModule)
+  },
+ 
+  {
+    path: 'sold-shares',
+    loadChildren: () => import('./page/sold-shares/sold-shares.module').then( m => m.SoldSharesPageModule)
+  },
+  
+ 
+  {
+    path: 'confirm-sale',
+    loadChildren: () => import('./page/confirm-sale/confirm-sale.module').then( m => m.ConfirmSalePageModule)
+  },
+  {
+    path: 'refferals',
+    loadChildren: () => import('./page/refferals/refferals.module').then( m => m.RefferalsPageModule)
+  },
+  {
+    path: 'wallet',
+    loadChildren: () => import('./page/wallet/wallet.module').then( m => m.WalletPageModule)
+  },
+  {
+    path: 'admin-user-modal',
+    loadChildren: () => import('./admin/admin-user-modal/admin-user-modal.module').then( m => m.AdminUserModalPageModule)
+  },
+  {
+    path: 'admin-share-allocation',
+    loadChildren: () => import('./admin/admin-share-allocation/admin-share-allocation.module').then( m => m.AdminShareAllocationPageModule)
+  },
+
+  {
+    path: 'banking-details',
+    loadChildren: () => import('./page/banking-details/banking-details.module').then( m => m.BankingDetailsPageModule)
+  },
+  {
+    path: 'accouncements',
+    loadChildren: () => import('./admin/accouncements/accouncements.module').then( m => m.AccouncementsPageModule)
+  },
+  
+  {
+    path: 'brought',
+    loadChildren: () => import('./page/brought/brought.module').then( m => m.BroughtPageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./page/profile/profile.module').then( m => m.ProfilePageModule)
+  },
+  {
+    path: 'user-bank',
+    loadChildren: () => import('./page/user-bank/user-bank.module').then( m => m.UserBankPageModule)
+  },
+  {
+    path: 'login-user',
+    loadChildren: () => import('./page/login-user/login-user.module').then( m => m.LoginUserPageModule)
+  },
+  {
+    path: 'view-announcements',
+    loadChildren: () => import('./admin/view-announcements/view-announcements.module').then( m => m.ViewAnnouncementsPageModule)
+  },
+  {
+    path: 'view-bids',
+    loadChildren: () => import('./admin/view-bids/view-bids.module').then( m => m.ViewBidsPageModule)
+  },
+  {
+    path: 'loader',
+    loadChildren: () => import('./page/loader/loader.module').then( m => m.LoaderPageModule)
+  },
+  {
+    path: 'admin-pending-shares',
+    loadChildren: () => import('./admin/admin-pending-sharees/admin-pending-sharees.module').then( m => m.AdminPendingShareesPageModule)
+  },
+
+ 
+
+
+  
+
+
+
+
+ 
+
+
+
+
 ]
 
 @NgModule({

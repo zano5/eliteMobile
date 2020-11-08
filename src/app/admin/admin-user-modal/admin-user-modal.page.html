@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Client</ion-title>
+
+    <ion-buttons slot="end">
+
+      <ion-button  (click)="close()">
+
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <ion-item>
+
+    <ion-label position="floating">Name</ion-label>
+    <ion-input type="text" [(ngModel)]= 'user.name'></ion-input>
+  </ion-item>
+
+  <ion-item>
+
+    <ion-label position="floating">Surname</ion-label>
+    <ion-input type="text"  [(ngModel)]= 'user.surname'></ion-input>
+  </ion-item>
+
+  <ion-item>
+
+    <ion-label position="floating">Contact</ion-label>
+    <ion-input type="text"  [(ngModel)]= 'user.contact'></ion-input>
+  </ion-item>
+
+  <ion-item>
+
+    <ion-label position="floating">Password</ion-label>
+    <ion-input type="text"  [(ngModel)]= 'user.password'></ion-input>
+  </ion-item>
+
+  <ion-item>
+
+    <ion-label position="floating">Shares Amount</ion-label>
+    <ion-input type="text"  [(ngModel)]= 'user.amount'></ion-input>
+  </ion-item>
+
+
+  <ion-row>
+
+    <ion-col>
+    <ion-button expand="block" (click)="updateUser()">Update</ion-button>
+  </ion-col>
+  <ion-col>
+    <ion-button expand="block" color="danger">Block</ion-button>
+  </ion-col>
+  </ion-row>
+
+  <ion-button expand="block" color="secondary" (click)="goToPendingShares()">View pending Shares</ion-button>
+
+</ion-content>

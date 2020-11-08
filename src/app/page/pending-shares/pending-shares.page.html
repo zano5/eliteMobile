@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title>Pending Shares</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-row>
+
+    <ion-col  size-xs="12" size-md="12" size-lg="6" >
+
+      <ion-card  class="ion-padding" *ngFor="let pending of pendingBidList" class="ion-padding">
+
+        <ion-card-title>{{pending.reference}}</ion-card-title>
+
+
+        <ion-card-content>
+
+        
+
+            <ion-item lines="none" >
+
+                Amount: R{{pending.acceptedAmount}} 
+
+                
+
+                <input
+  style="display: none"
+  type="file" (change)="onFileChanged($event,pending)"
+  #fileInput>
+<ion-button ion-button fill="clear" (click)="fileInput.click()"><ion-icon name="cloud-upload-outline" ></ion-icon></ion-button>
+
+            </ion-item>
+
+
+    <ion-item *ngIf="pending.uploadStatus== 'completed'" lines="none" style="color:#40ae84;">
+
+        File Uploaded
+
+      </ion-item>
+        
+
+
+        </ion-card-content>
+
+      </ion-card>
+
+    </ion-col>
+
+
+  </ion-row>
+
+
+</ion-content>

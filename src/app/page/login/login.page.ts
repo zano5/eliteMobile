@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Platform } from '@ionic/angular';
 import { LoginService } from 'src/app/service/login.service';
 
 
@@ -21,8 +23,10 @@ export class LoginPage implements OnInit {
   submitted = false
   error = '';
 
+  platform;
+
   constructor(private fb: FormBuilder,
-    private route :Router, private loginDao: LoginService) {
+    private route :Router, private loginDao: LoginService, private plat: Platform, private auth: AngularFireAuth) {
       this.form = fb.group({
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required]]
@@ -59,21 +63,27 @@ export class LoginPage implements OnInit {
       console.log(mail);
       console.log(password);
 
+      
 
-      this.loginDao.login(mail,password).then(() =>{
-
-
-
-        alert('Successfully Login!');
-
-        this.route.navigateByUrl('sidemu/detail');
-
-      }).catch(err =>{
+        this.loginDao.login(mail,password).then(() =>{
 
 
-        alert(err.message + ' Failed to login');
 
-      });
+          alert('Successfully Login!');
+  
+          this.route.navigateByUrl('sidemu/dashboard');
+  
+        }).catch(err =>{
+  
+  
+          alert(err.message + ' Failed to login');
+  
+        });
+
+
+        
+   
+     
 
      
     }
@@ -82,12 +92,21 @@ export class LoginPage implements OnInit {
       }
   ngOnInit() {
     //this.authService.check_Authentication();
+
+      if(this.auth.currentUser != null){
+    this.platform = this.plat;
+    this.plat.is("mobileweb");
+
+      }else{
+
+        this.route.navigateByUrl('');
+      }
   }
 
 
   signUp(){
 
-    this.route.navigateByUrl('sign-up');
+    this.route.navigateByUrl('sign-up/');
   }
 
 }

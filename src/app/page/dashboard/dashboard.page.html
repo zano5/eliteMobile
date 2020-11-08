@@ -1,0 +1,238 @@
+<ion-header>
+  <ion-toolbar> 
+
+    <ion-buttons slot="start">
+      <ion-menu-button>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title>Dashboard</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)= "goNotifications()">
+        
+        <ion-icon name="notifications"></ion-icon>
+  
+        <ion-badge *ngIf="acceptedBidCount !=0">{{acceptedBidCount}}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  
+  
+<ion-row>
+  <ion-col  size-xs="6"  size-md="6" size-lg="4"  size-xl='4'  >
+    <ion-card  class="ion-padding" style="background-color: blue;" class="cardItem">
+
+      
+      <ion-card-content>
+
+
+        <b>Profit</b>
+        <br>
+        {{totalSoldShares - totalSharesBought}}
+
+
+      </ion-card-content>
+
+      
+
+    </ion-card>
+  </ion-col>
+
+  <ion-col   size-xs="6"  size-md="6" size-lg="4"  size-xl='4' >
+    <ion-card  class="ion-padding" style="background-color: pink;" class="cardItem">
+
+      
+      <ion-card-content>
+
+
+        <b>Total Incentive Bonus</b>
+        <br>
+        {{totalIncentiveAmount}}
+
+
+      </ion-card-content>
+
+      
+
+    </ion-card>
+  </ion-col>
+
+  <ion-col   size-xs="6"  size-md="6" size-lg="4"  size-xl='4' >
+    <ion-card  class="ion-padding" style="background-color:lightblue;" class="cardItem">
+
+      
+      <ion-card-content>
+
+
+        <b>Total Sold Shares</b>
+        <br>
+    {{totalSoldShares}}
+     
+
+
+      </ion-card-content>
+
+      
+
+    </ion-card>
+  </ion-col>
+
+  <ion-col  size-xs="6"  size-md="6" size-lg="4"  size-xl='4' >
+    <ion-card  class="ion-padding" style="background-color: orange; " class="cardItem">
+
+      
+
+      <ion-card-content>
+
+
+        <b>Available Shares</b>
+        <br>
+        {{totalAvailableShares}}
+
+
+      </ion-card-content>
+      
+
+    </ion-card>
+  </ion-col>
+
+  <ion-col   size-xs="6"  size-md="6" size-lg="4"  size-xl='4' >
+    <ion-card  class="ion-padding" style="background-color: red;" class="cardItem">
+
+      
+      <ion-card-content>
+
+
+        <b>Referrals</b>
+        <br>
+        
+        {{referralCount}}
+
+
+      </ion-card-content>
+
+      
+
+    </ion-card>
+  </ion-col>
+
+
+  <ion-col   size-xs="6"  size-md="6" size-lg="4"  size-xl='4' >
+    <ion-card  class="ion-padding" style="background-color: red;" class="cardItem">
+
+           
+      <ion-card-content>
+      <b>My Total Shares</b>
+      <br>
+     {{totalSharesBought}}
+
+      </ion-card-content>
+
+    </ion-card>
+  </ion-col>
+
+
+  
+</ion-row>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<ion-card>
+
+  <ion-card-title  id="card_title" class="ion-padding">
+    Activities
+  </ion-card-title>
+
+ <ion-content style="height:400px;">
+<div *ngFor="let activity of activityList"   >
+<div *ngIf="activity.received == 'none'">
+  <ion-row >
+    <ion-col size="3">
+    <div style="height: 50px; width: 5px; background-color: orange;"  >
+       
+    </div>
+
+  </ion-col>
+
+<ion-col size="9">
+   <p> Awaiting  payment {{activity.reference}}</p>
+   </ion-col>
+  </ion-row>
+
+ 
+ 
+</div>
+
+
+
+  <div *ngIf="activity.received == 'paid'">
+    
+  
+    <ion-row >
+  
+      <ion-col size="3">
+        <div style="height: 50px; width: 5px; background-color: Green;"  >
+         
+        </div>
+      </ion-col>
+  
+  <ion-col size="9">
+    <p> You confirmed you receivered payment from {{activity.reference}} of an amount of {{activity.acceptedAmount}}</p>
+  
+  </ion-col>
+    </ion-row>
+   
+  </div>
+  
+  </div>
+</ion-content>
+  <!-- <ion-infinite-scroll threshold="300px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll> -->
+</ion-card>
+
+
+
+
+
+<ion-card>
+
+  <ion-card-title id="card_title" class="ion-padding">
+
+    Announcements
+  </ion-card-title>
+
+  <ion-card-content style="color: black;">
+
+
+  <ion-item *ngFor="let  announcement of announcementsList">
+
+       <div>{{announcement.message}} </div> <div style="margin-left: 10px;"><b> Posted By</b>: {{announcement.postedBy}}</div>   <div style="margin-left: 10px;">  </div> 
+
+    </ion-item>
+
+
+
+  </ion-card-content>
+</ion-card>
+
+</ion-content>

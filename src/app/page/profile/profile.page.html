@@ -2,8 +2,8 @@
   <ion-toolbar color='primary'>
 
      <ion-buttons slot="start">
-      <ion-menu-button>
-      </ion-menu-button>
+      <ion-back-button>
+      </ion-back-button>
     </ion-buttons>
     <ion-title>Profile</ion-title>
   </ion-toolbar>
@@ -11,36 +11,12 @@
 
 <ion-content color="dark">
 
-  
-  <div class="header-card">
-    <ion-card>
-        <ion-header class="heade">
-
-          <h2>Amount</h2>
-          <div id='avatar'>
-
-           <p style="padding-top:45%;"> R {{client?.amount}}<p>
-          </div>
-           
-        </ion-header>
-
-        <ion-row>
-
-          <ion-col>
-
-            <ion-button expand='full' (click)='addBidPresent()'><ion-icon name='add'></ion-icon>Add Bid</ion-button>
-
-          </ion-col>
-
-          <ion-col>
-            <ion-button expand='full' (click)='addBidAllPresent()'><ion-icon name='wallet'></ion-icon>Bid All</ion-button>
-          </ion-col>
-        </ion-row>
-    </ion-card>
-    </div>
+ 
 
 
     <div id="card" *ngIf="platform.is('desktop')">
+
+      <ion-card class="ion-padding">
     
     <ion-list class="ion-padding" class='list_web'>
       <ion-item  lines="none">
@@ -87,13 +63,18 @@
   
       </ion-item>
   </ion-list>
+</ion-card>
+
+<ion-card class="ion-padding" (click)="presentProfile(client)">Banking Details</ion-card>
+<!-- <ion-card class="ion-padding" (click)="presentWallet(client)">Wallet</ion-card> -->
   </div>
 
 
+
   <div *ngIf="platform.is('mobileweb')">
-    
+    <ion-card>
     <ion-list class="ion-padding">
-      <ion-item  lines="none">
+      <ion-item  >
 
 
      <b>Name:</b>   {{client?.name}} <ion-button fill='clear' id='create_button' (click)="presentName()"><ion-icon name='create'></ion-icon></ion-button>
@@ -101,14 +82,14 @@
     </ion-item>
 
 
-    <ion-item class="ion-text-center" lines="none">
+    <ion-item class="ion-text-center" >
 
 
      <b> Surname:</b>  {{client?.surname}} <ion-button fill='clear' id='create_button' (click)="presentSurname()"><ion-icon name='create'></ion-icon></ion-button>
 
     </ion-item>
 
-    <ion-item class="ion-text-center" lines="none">
+    <ion-item class="ion-text-center" >
 
 
       <b>Gender:</b>  {{client?.gender}} <ion-button fill='clear' id='create_button' (click)="presentGender()"><ion-icon name='create'></ion-icon></ion-button>
@@ -117,26 +98,31 @@
 
    
 
-    <ion-item class="ion-text-center" lines="none">
+    <ion-item class="ion-text-center">
 
 
-     <b>Contact:</b>   {{client?.contact}} <ion-button fill='clear' id='create_button'><ion-icon name='create' (click)="presentContact()"></ion-icon></ion-button>
+      <b>Contact:</b>   {{client?.contact}} 
+ 
+     </ion-item>
 
-    </ion-item>
-
-    <ion-item class="ion-text-center" lines="none">
+    <ion-item class="ion-text-center" >
 
 
       <b>Email:</b>  {{client?.email}} 
 
     </ion-item>
 
-    <ion-item class="ion-text-center" lines="none">
+    <ion-item >
 
 
       <b>Password:</b>  {{client?.password}} 
 
     </ion-item>
   </ion-list>
+</ion-card>
+
+
+  <ion-card class="ion-padding" (click)="presentProfile(client)">Banking Details</ion-card>
+  <!-- <ion-card class="ion-padding" (click)="presentWallet(client)">Wallet</ion-card> -->
   </div>
 </ion-content>

@@ -1,13 +1,27 @@
 import { Injectable } from '@angular/core';
+import { async } from '@angular/core/testing';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
+import * as firebase from 'firebase';
+import { finalize } from 'rxjs/operators';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class BidService {
 
- 
-  constructor(private asf: AngularFirestore) { }
+  ref;
+  task;
+  uploadProgress;
+downloadURL;
+
+
+  acceptedBid;
+  bid;
+  constructor(private asf: AngularFirestore, private storage: AngularFireStorage) { }
 
 
   getBids(){
@@ -17,7 +31,7 @@ export class BidService {
     
   }
 
-  getUserBids(userID){
+  getUserBids(){
 
     return this.asf.collection('Bidding').snapshotChanges();
   }
@@ -45,13 +59,7 @@ export class BidService {
 
   setAcceptedBid(acceptedBid){
 
-    this.asf.collection('AcceptedBid').add(acceptedBid).then(() => {
-
-    }).catch(err => {
-
-
-    });
-
+   return this.asf.collection('AcceptedBid').add(acceptedBid);
 
 
   }
@@ -66,25 +74,164 @@ export class BidService {
   }
 
 
-  getBidsByFilter5000(amount){
+  getBidsByFilter5000(amount, userID){
 
 
-    return this.asf.collection('Bidding',ref => ref.where('amount', '<=', 5000).where('amount', '<=', 5000)).snapshotChanges();
+    return this.asf.collection('Bidding',ref => ref.where('amount', '<=', 3000).where('amount', '<=', 3000).where('amount', '>', 0)).snapshotChanges();
   }
 
 
-  getBidsByFilter10000(amount){
+  getBidsByFilter10000(amount, userID){
 
 
-    return this.asf.collection('Bidding',ref => ref.where('amount', '>=', 5000 ).where('amount', '==', 10000)).snapshotChanges();
+    return this.asf.collection('Bidding',ref => ref.where('amount', '>=', 3000 ).where('amount', '==', 6000).where('amount', '>', 0)).snapshotChanges();
   }
 
 
-  getBidsByFilter15000(amount){
+  getBidsByFilter15000(amount, userID){
 
 
-    return this.asf.collection('Bidding',ref => ref.where('amount', '>=', 10000).where('amount', '==', 15000)).snapshotChanges();
+    return this.asf.collection('Bidding',ref => ref.where('amount', '>=', 6000).where('amount', '==', 10000).where('amount', '>', 0)).snapshotChanges();
   }
+
+
+  userAcceptedBid(acceptedBid){
+
+    this.acceptedBid = acceptedBid;
+    console.log('User Accepted Bid', acceptedBid);
+    }
+  
+  
+    getUserAcceptedBid(){
+  
+        return this.acceptedBid;
+    }
+
+    updateAcceptedBide(acceptedBid){
+
+      console.log('service', acceptedBid.key);
+     return this.asf.collection('AcceptedBid', ref=> ref.where('amount', '>',0  )).doc(acceptedBid.key).update(acceptedBid);
+
+    }
+
+    getUserAcceptedBids(userID){
+
+      return this.asf.collection('AcceptedBid', ref=> ref.where('bid.auctionerID', '==', userID).where('status', '==', 'paid').where('received', '==', 'none')).snapshotChanges();
+
+    }
+
+
+    getUserSoldShares(userID){
+
+      return this.asf.collection('AcceptedBid', ref=> ref.where('bid.auctionerID', '==', userID).where('status', '==', 'paid').where('received', '==', 'paid')).snapshotChanges();
+
+    }
+
+
+    getActivitySoldShares(userID){
+
+
+      return this.asf.collection('AcceptedBid', ref=> ref.where('bid.auctionerID', '==', userID).where('status', '==', 'paid').where('received', '==', 'paid')).snapshotChanges();
+
+    }
+
+
+    
+    getBoughtSoldShares(userID){
+
+
+      return this.asf.collection('AcceptedBid', ref=> ref.where('bidderID', '==', userID).where('status', '==', 'paid').where('received', '==', 'paid')).snapshotChanges();
+
+    }
+
+
+    getUserSoldSharesByReference(userID, reference){
+
+      return this.asf.collection('AcceptedBid', ref=> ref.where('bid.auctionerID', '==', userID).where('status', '==', 'paid').where('received', '==', 'paid').where('reference', '==', reference)).snapshotChanges();
+
+    }
+
+
+    deleteBid(bid){
+
+
+      this.asf.collection('Bidding').doc(bid.key).delete();
+    }
+
+    setBidItem(){
+
+    }
+
+    getPendingBids(userID){
+
+      return this.asf.collection('AcceptedBid', ref=> ref.where('bidderID', '==', userID).where('status', '==', 'paid').where('received', '==', 'none')).snapshotChanges();
+    }
+
+
+
+    uploadDocument(acceptedBid, selectFile){
+
+      const fileName = this.makeid(10);
+      // this.afs.upload('/upload/to/this-path', event.target.files[0]);
+   
+     // const randomId = Math.random().toString(36).substring(2);
+        const file = selectFile;
+        const filePath = 'uploads/payment/' + fileName;
+        this.ref = this.storage.ref(filePath)
+   
+    
+        this.task = this.storage.upload(filePath, file)
+
+
+              acceptedBid.fileNameUrl = fileName;
+         
+                  acceptedBid.uploadStatus ='completed';
+             
+        
+
+
+     
+   
+       
+      
+
+        
+        
+
+        this.updateAcceptedBide(acceptedBid);
+   
+   
+   
+   
+   
+       return this.uploadProgress = this.task.percentageChanges();
+
+    }
+
+    makeid(length) {
+      let result           = '';
+      const characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      const charactersLength = characters.length;
+      for (  let i = 0; i < length; i++ ) {
+         result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      }
+      return result;
+   }
+    
+
+   retreiveImage(image) {
+
+    console.log(image);
+
+    
+    let ref = this.storage.ref('uploads/payment/' + image)
+   return  ref.getDownloadURL();
+
+     
+  }
+
+
+ 
 
 
 

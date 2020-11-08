@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, Platform } from '@ionic/angular';
+import { AlertController, ModalController, Platform } from '@ionic/angular';
 import * as firebase from 'firebase';
 import { BidService } from 'src/app/service/bid.service';
 import { UserService } from 'src/app/service/user.service';
+import { UserBankPage } from '../user-bank/user-bank.page';
+import { WalletPage } from '../wallet/wallet.page';
 
 @Component({
   selector: 'app-profile',
@@ -17,7 +19,7 @@ export class ProfilePage implements OnInit {
   userID;
   bid = {} as Bid;
 
-  constructor(private plat: Platform, private alertCtrl: AlertController, private userDao: UserService, private bidDao: BidService) { 
+  constructor(private plat: Platform, private alertCtrl: AlertController, private userDao: UserService, private bidDao: BidService, private modal: ModalController) { 
 
    
 
@@ -272,6 +274,33 @@ export class ProfilePage implements OnInit {
   
            
        
+  }
+
+  async presentProfile(client) {
+    const modal = await this.modal.create({
+      component: UserBankPage,
+      cssClass: 'my-custom-class',
+      componentProps: { 
+        client: this.client
+       
+      }
+    });
+    return await modal.present();
+
+  
+  }
+
+  async presentWallet(client){
+
+    const modal = await this.modal.create({
+      component: WalletPage,
+      cssClass: 'my-custom-class',
+      componentProps: { 
+        client: this.client
+       
+      }
+    });
+    return await modal.present();
   }
 
 

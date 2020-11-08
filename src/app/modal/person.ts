@@ -9,5 +9,7 @@ class Person{
     password: string;
     userID: string;
     amount: number;
+    contactNumber: number;
+    username: string;
 
 }

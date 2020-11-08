@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title>Referrals</ion-title>
+
+    <ion-buttons slot="end">
+      
+      <ion-button (click)="goProfile()"><ion-icon name="person"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  
+<ion-card class="ion-padding">
+
+  <ion-card-title>
+    Referral Link:
+  </ion-card-title>
+  <p><b>https://http://localhost:8100/sign-up/{{userID}}</b></p>
+  </ion-card>
+
+
+
+  
+<ion-card class="ion-padding">
+
+
+  <ion-row>
+
+    <ion-col><b>Username</b></ion-col>
+ 
+  
+  </ion-row>
+
+</ion-card>
+
+
+<ion-card class="ion-padding">
+
+
+  <ion-row *ngFor="let user of userList">
+
+
+    <ion-col>{{user.username}}</ion-col>
+   
+  
+  </ion-row>
+
+</ion-card>
+
+</ion-content>
+
+
