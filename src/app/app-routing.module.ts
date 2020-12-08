@@ -1,3 +1,4 @@
+import { LandingComponent } from './component/landing/landing.component';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { SidemuPage } from './page/menu/sidemu/sidemu.page';
@@ -9,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'login-user',
+    redirectTo: 'landing',
     pathMatch: 'full'
   },
   {
@@ -109,10 +110,7 @@ const routes: Routes = [
     path: 'admin-users',
     loadChildren: () => import('./admin/admin-users/admin-users.module').then( m => m.AdminUsersPageModule)
   },
-  {
-    path: 'landing',
-    loadChildren: () => import('./page/landing/landing.module').then( m => m.LandingPageModule)
-  },
+ 
  
   {
     path: 'sold-shares',
@@ -182,6 +180,8 @@ const routes: Routes = [
     path: 'admin-pending-shares',
     loadChildren: () => import('./admin/admin-pending-sharees/admin-pending-sharees.module').then( m => m.AdminPendingShareesPageModule)
   },
+
+  {path: 'landing', component: LandingComponent }
 
  
 

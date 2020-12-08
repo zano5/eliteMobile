@@ -71,11 +71,10 @@ export class DashboardPage implements OnInit {
     this.announcementsDao.getAnnouncements().subscribe(data => {
 
 
-      
       this.announcementsList = data.map(e=> {
 
 
-     
+
 
         return{
 

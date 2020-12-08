@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import * as firebase from 'firebase';
 import { PhoneNumber } from 'src/app/modal/phoneNumber';
 import { UserService } from 'src/app/service/user.service';
@@ -37,9 +37,19 @@ export class LoginUserPage implements OnInit {
 
   clientItem;
 
-  constructor( private win: WindowService, private router: Router, private auth: AngularFireAuth, private userDao: UserService) { }
+  userID;
+
+  constructor( private win: WindowService, private router: Router, private auth: AngularFireAuth, private userDao: UserService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+
+
+    this.route.queryParams.subscribe(params =>{
+
+
+      this.userID = params['userID'];
+
+    })
 
     if(this.auth.currentUser != null){
 
@@ -94,7 +104,6 @@ export class LoginUserPage implements OnInit {
                   .confirm(this.verificationCode)
                   .then( result => {
 
-                  
 
                     this.user = result.user;
 
@@ -103,31 +112,24 @@ export class LoginUserPage implements OnInit {
                  
                     console.log('clientID',this.user.uid)
 
-                   this.userDao.getUserByUserID(this.user.uid).subscribe(data => {
+                   this.userDao.getUserByUserID(this.userID).subscribe(data => {
 
 
 
                      this.clientItem = data.data() as Client;
 
                      console.log( 'client', ""+this.client)
-            
-            
-                    if(this.clientItem  ==  null ){
-
-                    this.client.userID = "" + this.user.uid;
+        
                     this.client.contact= this.phoneNumber.country + '' +this.phoneNumber.area + '' + this.phoneNumber.prefix + '' + this.phoneNumber.prefix;
 
-                   this.userDao.createUser(this.client, this.user.uid);
-                   this.router.navigateByUrl('sign-up/id');
-            
-            
-                  }else{
-            
-                    this.router.navigateByUrl('sidemu/dashboard');
-                      }
-            
-            
-            
+                    this.userDao.updateUser(this.client).then(() => {
+
+
+                      this.router.navigateByUrl('login');
+
+                    });
+
+
                     })
     })
     .catch( error => console.log(error, "Incorrect code entered?"));

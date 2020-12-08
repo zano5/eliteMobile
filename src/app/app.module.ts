@@ -1,3 +1,5 @@
+import { LandingComponent } from './component/landing/landing.component';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -30,7 +32,7 @@ var firebaseConfig = {
 };
 
 @NgModule({
-  declarations: [AppComponent,SidemuPage],
+  declarations: [AppComponent, SidemuPage, LandingComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),

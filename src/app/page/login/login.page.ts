@@ -45,17 +45,11 @@ export class LoginPage implements OnInit {
   }
 
   submit(){
-    // this.submitted = true;
+  
     this.error = '';
    
     if (this.form.valid) {
-      
-    //   this.loginService.login(this.form.value['email'], this.form.value['password']).then(() => {
-    //     console.log('Success');
-    //   }).catch(err => {
-    //     console.log(err);
-    //     this.error = err.message;
-    //   })
+ 
     let mail =this.form.value.email;
     let password = this.form.value.password;
    

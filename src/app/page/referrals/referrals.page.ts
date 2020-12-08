@@ -1,3 +1,4 @@
+import { BidService } from './../../service/bid.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
@@ -12,10 +13,12 @@ export class ReferralsPage implements OnInit {
 
   userID;
   userList;
-  constructor(private router: Router, private userDao: UserService) { 
+  userReferenceList;
+
+  amount;
+  constructor(private router: Router, private userDao: UserService, private bidDao: BidService) { 
 
 
-    
   }
 
   ngOnInit() {
@@ -30,34 +33,51 @@ export class ReferralsPage implements OnInit {
 
       this.userDao.getUserReferralsByUserID(firebase.auth().currentUser.uid.toString()).subscribe(data =>{
 
-      
-    
+
+
         this.userList = data.map(e => {
+
+
+
 
 
           return{
 
             key: e.payload.doc.id,
             ...e.payload.doc.data() as Client
-           
+
 
 
           }as Client
 
+
+          let object = e.payload.doc.data() as Object;
+
+          
+
+
+
+
+
+
+
           });
+
 
       });
 
-     
 
     }
 
 
- 
+
   goProfile(){
 
 
     this.router.navigateByUrl('profile');
   }
+
+
+  
 
 }

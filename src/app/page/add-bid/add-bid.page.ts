@@ -118,35 +118,12 @@ export class AddBidPage implements OnInit {
    }
 
 
-
-
-    
-
-    
-
-
-
-
-
-
-
   }else{
 
 
     alert('Mimimum Bid is 500');
   }
-    
 
-  
-  
-    
-
-  
-
-  
-
-
-   
  }else{
 
 
@@ -173,46 +150,90 @@ export class AddBidPage implements OnInit {
 
  buyAll(){
 
+  console.log('duration', this.acceptBid.acceptedDuration);
 
-  
   this.acceptBid.bidderID = firebase.auth().currentUser.uid;
   this.acceptBid.createdDate = new Date()
   this.acceptBid.bid = this.bid;
   this.acceptBid.status = 'Unpaid';
   this.acceptBid.reference = 'elite'+ this.makeid(4);
 
-  if(this.acceptBid.acceptedDuration)
+
  
 
 
 if(this.bid.amount != 0){
-  this.bid.amount = this.bid.amount - this.acceptBid.acceptedAmount;
-  this.bidDao.updateBid(this.bid);
+
+if(this.acceptBid.acceptedAmount  ){
 
 
-  this.bidDao.setAcceptedBid(this.acceptBid).then(data =>{
 
-    this.acceptBid.key = data.id;
-    console.log(this.acceptBid.key);
 
-    this.bidDao.userAcceptedBid(this.acceptBid);
+
+ 
+
+this.bidDao.userAcceptedBid(this.acceptBid);
+
+
+
+  
+  this.acceptBid.received='none';
+
+  let value = parseInt(this.acceptBid.acceptedDuration);
+  if(value == 3){
+  this.acceptBid.percentage = 0.35;
+
+  }else if(value == 8){
+    this.acceptBid.percentage = 0.75;
+  }else if(value == 12){
+    this.acceptBid.percentage = 1.20;
+  }
+ if(this.acceptBid.key != ''){ 
+
+
+  if(this.acceptBid.bid.amount >= this.acceptBid.acceptedAmount){
+
+  let bid =  this.acceptBid.bid;
+  
+  bid.amount =  bid.amount - this.acceptBid.acceptedAmount;
+
+  console.log('the bid', bid);
+
+ this.bidDao.setAcceptedBid(this.acceptBid).then(() => {
+
+    alert('Shares Bought');
+
+
+    this.bidDao.updateBid(bid);
+    
+
+    
+
+    console.log(this.acceptBid);
+
 
     this.close();
     this.router.navigateByUrl('banking-details');
-  })
-
-
-  
-  
 
 
 
-  
+ })
+
+}else{
+
+  alert('Invalid Share Sale');
+
+}
+ }else{
+
+  console.log('error');
+ }
+
+}else{
 
 
-
-
-
+  alert('Mimimum Bid is 500');
+}
 
  
 }else{
